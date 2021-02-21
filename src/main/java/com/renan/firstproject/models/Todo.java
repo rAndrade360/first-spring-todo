@@ -2,11 +2,12 @@ package com.renan.firstproject.models;
 
 import com.renan.firstproject.utils.RandomStringId;
 
-import java.nio.charset.Charset;
-import java.util.Random;
+import javax.validation.constraints.NotEmpty;
 
 public class Todo {
     private String id;
+
+    @NotEmpty(message="The text can not be null")
     private String text;
 
     public Todo(String text) {
@@ -23,8 +24,6 @@ public class Todo {
         RandomStringId random = new RandomStringId();
         this.id = random.execute();
     }
-
-
 
     public String getText() {
         return text;

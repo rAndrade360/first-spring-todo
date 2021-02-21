@@ -22,4 +22,25 @@ public class TodoRepository {
         this.todos.add(todo);
     }
 
+    public Todo findOne(String id){
+        for (Todo todo: this.todos) {
+            if(todo.getId().equals(id)){
+                return todo;
+            }
+        }
+        return null;
+    }
+
+    public Todo updateTodo(String id, Todo newTodo){
+        Todo todo = this.findOne(id);
+        int index = todos.indexOf(todo);
+        todos.set(index, newTodo);
+        return newTodo;
+    }
+
+    public boolean deleteTodo(Todo todo){
+        boolean removed = todos.remove(todo);
+        return removed;
+    }
+
 }
