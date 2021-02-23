@@ -1,11 +1,13 @@
 package com.renan.firstproject.services;
 
+import com.renan.firstproject.exception.TodoNotFoundException;
 import com.renan.firstproject.models.Todo;
 import com.renan.firstproject.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoService {
@@ -18,7 +20,12 @@ public class TodoService {
     }
 
     public Todo findOne(String id) {
-        return repository.findOne(id);
+        Todo todo = repository.findOne(id);
+
+        if(todo == null){
+            throw new TodoNotFoundException();
+        }
+        return todo;
     }
 
     public void createTodo(Todo todo) {
